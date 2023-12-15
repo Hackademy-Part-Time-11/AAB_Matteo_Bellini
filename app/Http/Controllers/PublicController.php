@@ -54,24 +54,42 @@ class PublicController extends Controller
                         break;
 
         }
-       $user ->update('mail.roleRequest');
+       $user ->update();
         return redirect()->route('home')->with('message','Grazie per averci contattato');
 
     }
 
-    public function dashboard(){
-        $adminRequests = User::where('is_admin',NULL)->get();
-        $revisorRequests = User::where('is_revisor',NULL)->get();
-        $writerRequests = User::where ('is_writer',NULL)->get();
-        return view('admin.dashboard',compact('adminRequests','revisorRequests','writerRequests'));
-    }
+    // public function dashboard(){
+    //     $adminRequests = User::where('is_admin',NULL)->get();
+    //     $revisorRequests = User::where('is_revisor',NULL)->get();
+    //     $writerRequests = User::where ('is_writer',NULL)->get();
+    //     $tags = Tag::all();
+    //     return view('admin.dashboard',compact('adminRequests','revisorRequests','writerRequests'));
+    // }
 
     public function searchArticle(Request $request)
     {
         $key =$request->input('key');
-        $articles = Article::serach($key)->where('is_accepted', true)->get();
+        $articles = Article::search($key)->where('is_accepted', true)->get();
         return view('articles.index', compact('articles', 'key'));
-    }
+     }
+
+    // public function editTag(Request $request, Tag $tag)
+    // {
+    //     $tag->update(
+    //         [
+    //             'name' => $request ->input('name')
+    //         ]
+    //         );
+    //     return redirect()->route('admin.dashboard');
+
+    // }
+
+    // public function deleteTag (Tag $tag)
+    // {
+    //     $tag->delete();
+    //     return redirect()->route('admin.dashboard');
+    // }
 
 
 }

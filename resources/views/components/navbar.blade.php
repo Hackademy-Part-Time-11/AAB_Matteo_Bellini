@@ -25,7 +25,7 @@
 @endauth
 
 <li class="nav-item max-3">
-    <a class="nav-link" href="{{route('articles.create')}}">Pubblica Articolo</a>
+    <a class="nav-link" href="{{route('article.create')}}">Pubblica Articolo</a>
 </li>
 
 <li></li>

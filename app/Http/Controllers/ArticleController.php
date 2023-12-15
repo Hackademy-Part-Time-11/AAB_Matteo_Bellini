@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Tag;
 
 class ArticleController extends Controller
 {
@@ -21,6 +22,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
+        $tags= Tag::all();
         return view('articles.create');
     }
 
@@ -42,6 +44,11 @@ class ArticleController extends Controller
             ]
 
             );
+
+            $selectedTags =$request->input('tags');
+            foreach($selectedTags as $tagId){
+                $article->tags()->attach($tagId);
+            }
             
             return redirect()->route('home')->with("message","Articolo caricato correttamente");
     }

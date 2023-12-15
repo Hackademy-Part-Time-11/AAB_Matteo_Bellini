@@ -37,6 +37,10 @@ route::middleware('admin')->group(function(){
     route::get('/admin/{user}/set-revisor',[AdminController::class,'makeUserRevisor'])->name('admin.makeUserRevisor');
     route::get('/admin/{user}/set-admin',[AdminController::class,'makeUserAdmin'])->name('admin.makeUserAdmin');
     route::get('/admin/{user}/set-writer',[AdminController::class,'makeUserWriter'])->name('admin.makeUserWriter');
+    route::post('/tag/store', [AdminController::class, 'storeTag'])->name('tag.store');
+    Route::post('/category/{category}/update', [AdminController::class, 'editCategory'])->name('category.edit');
+    Route::delete('/category/{category}/delete', [AdminController::class, 'deleteCategory'])->name('category.delete');
+    Route::post('/category/store', [AdminController::class, 'storeCategory'])->name('category.store');
 });
 Route::middleware('writer')->group(function(){
 Route::get('/article/create', [ArticleController::class, 'create']) ->name('article.create');
@@ -50,4 +54,5 @@ route::middleware('revisor')->group(function(){
 });
 
 Route::get('/article/search', [PublicController::class, 'searchArticle'])->name('serach.articles');
-
+Route::post('/tag/{tag}/update',[AdminController::class, 'editTag'])->name('tag.edit');
+Route::delete('/tag/{tag}/delete', [AdminController::class, 'deleteTag'])->name('tag.delete');

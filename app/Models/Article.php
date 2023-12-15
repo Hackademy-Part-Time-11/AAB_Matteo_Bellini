@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Category;
 use App\Models\User;
 use Laravel\Scout\Searchable;
+use App\Models\Tag;
 
 
 
@@ -37,4 +38,10 @@ class Article extends Model
             'category'=>$this->category
         ];
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
 }
+
