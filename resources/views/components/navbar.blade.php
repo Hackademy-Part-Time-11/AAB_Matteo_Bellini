@@ -28,6 +28,8 @@
     <a class="nav-link" href="{{route('articles.create')}}">Pubblica Articolo</a>
 </li>
 
+<li></li>
+
 
 </x-layout>
 

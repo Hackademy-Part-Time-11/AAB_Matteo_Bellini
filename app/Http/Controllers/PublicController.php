@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Article;
+use Illuminate\Support\Facades\Auth;
+use App\Mail\RequestRoleMail;
+use Illuminate\Support\Facades\Mail;
 
 class PublicController extends Controller
 {
@@ -21,7 +24,7 @@ class PublicController extends Controller
     }
 
     public function workWithUs(){
-        return view ('workWithUs');
+        return view ('components.workWithUs');
     }
 
     public function sendRoleRequest(Request $request){
@@ -30,7 +33,8 @@ class PublicController extends Controller
         $email=$request->input('email');
         $presentation=$request->input('presentation');
         $requestMail=new RequestRoleMail(compact('role','email','presentation'));
-        Mail::to('admin@blog.it')->send($RequestMail);
+
+        Mail::to('admin@blog.it')->send($requestMail);
         switch($role){
             case'admin':
                 $user->is_admin=NULL;
