@@ -49,7 +49,7 @@ class CategoryController extends Controller
      */
     public function articles_by_category(Category $category)
     {
-        $articles=Article::where('category_id',$category->id)->orderBy('created_at','DESC')->get();
+        $articles=Article::where('category_id',$category->id)->where('is_accepted' ,true)->orderBy('created_at','DESC')->get();
         return view('article.category',compact('article','category'));
     }
 

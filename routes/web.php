@@ -38,3 +38,16 @@ route::middleware('admin')->group(function(){
     route::get('/admin/{user}/set-admin',[AdminController::class,'makeUserAdmin'])->name('admin.makeUserAdmin');
     route::get('/admin/{user}/set-writer',[AdminController::class,'makeUserWriter'])->name('admin.makeUserWriter');
 });
+Route::middleware('writer')->group(function(){
+Route::get('/article/create', [ArticleController::class, 'create']) ->name('article.create');
+Route::get('/article/store',[ArticleController::class, 'store'])->name('article.store');
+});
+route::middleware('revisor')->group(function(){
+    route::get('/revisor/dashboard',[RevisorController::class,'revisorDashboard'])->name('revisor.dashboard');
+    route::get('/revisor/article/{article}/detail',[RevisorController::class,'articleDetail'])->name('revisor.detail');
+    route::get('/revisor/article/{article}/accept',[RevisorController::class,'acceptArticle'])->name('revisor.accept');
+    route::get('/revisor/article/{article}/reject',[RevisorController::class,'rejectArticle'])->name('revisor.reject');
+});
+
+Route::get('/article/search', [PublicController::class, 'searchArticle'])->name('serach.articles');
+

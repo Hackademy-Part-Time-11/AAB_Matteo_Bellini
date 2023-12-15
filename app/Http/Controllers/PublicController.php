@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use Illuminate\Support\Facades\Auth;
-use App\Mail\RequestRoleMail;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\RequestRoleMail;
+use Laravel\Scout\Searchable;
+
 
 class PublicController extends Controller
 {
@@ -19,8 +21,11 @@ class PublicController extends Controller
         // return view('home');
 
 
-        $articles= Article::orderBy('created_at','desc')->take(6)->get();
+        $articles= Article::where('is_accepted' ,true)->orderBy('created_at','desc')->take(6)->get();
         return view('home',compact('articles'));
+
+        
+
     }
 
     public function workWithUs(){
@@ -49,7 +54,7 @@ class PublicController extends Controller
                         break;
 
         }
-        $user->update();
+       $user ->update('mail.roleRequest');
         return redirect()->route('home')->with('message','Grazie per averci contattato');
 
     }
@@ -59,6 +64,13 @@ class PublicController extends Controller
         $revisorRequests = User::where('is_revisor',NULL)->get();
         $writerRequests = User::where ('is_writer',NULL)->get();
         return view('admin.dashboard',compact('adminRequests','revisorRequests','writerRequests'));
+    }
+
+    public function searchArticle(Request $request)
+    {
+        $key =$request->input('key');
+        $articles = Article::serach($key)->where('is_accepted', true)->get();
+        return view('articles.index', compact('articles', 'key'));
     }
 
 

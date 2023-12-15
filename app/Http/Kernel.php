@@ -3,12 +3,16 @@
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use App\Http\Controllers\CheckIfUserIsAdmin;
 
 class Kernel extends HttpKernel
 {
 
     protected $routeMiddleware =[
+        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'admin'=> \App\Http\Middleware\CheckIfUserIsAdmin::class,
+        'writer'=>\App\Http\Middleware\CheckIfUserIsWriter::class,
+        'revisor'=>\App\Http\Middleware\CheckIfUserIsRevisor::class,
     ];
     /**
      * The application's global HTTP middleware stack.
