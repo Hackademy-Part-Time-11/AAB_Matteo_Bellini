@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AdminController;
+use App\Mail\RequestRoleMail;
 
 /*
 |--------------------------------------------------------------------------
