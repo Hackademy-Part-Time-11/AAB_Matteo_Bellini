@@ -1,12 +1,12 @@
-
+<x-layout>
 
 @guest 
 <li class="nav-item">
-    <a class="nav-link btn btn-succes" href="{{route('register')}}">register</a>
+    <a class="nav-link btn btn-succes" href="{{route('register')}}">Registrati</a>
 </li>
 
 <li class="nav.item">
-    <a class="nav-link btn btn-warning" href="{{route('login')}}">login</a>
+    <a class="nav-link btn btn-warning" href="{{route('login')}}">Accedi</a>
 </li>
 @endguest
 
@@ -27,5 +27,8 @@
 <li class="nav-item max-3">
     <a class="nav-link" href="{{route('articles.create')}}">Pubblica Articolo</a>
 </li>
+
+
+</x-layout>
 
 

@@ -24,6 +24,8 @@ class AdminController extends Controller
     public function makeUserWriter(User $user){
         $user->is_writer=true;
         $user->save();
+
+        return redirect()->route('admin.dashboard');
     }
 
     

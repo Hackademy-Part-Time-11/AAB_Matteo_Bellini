@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +30,10 @@ route::get('/work-with-us',[PublicController::class,'workWithUs'])->name('work.w
 route::post('/user/send-role-request',[PublicController::class,'sendRoleRequest'])->name('user.role.request');
 route::middleware('admin')->group(function(){
     route::get('/admin/dashboard',[AdminController::class,'dashboard'])->name('admin.dashboard');
+});
+route::middleware('admin')->group(function(){
+    route::get('/admin/dashboard',[AdminController::class,'dashboard'])->name('admin.dashboard');
+    route::get('/admin/{user}/set-revisor',[AdminController::class,'makeUserRevisor'])->name('admin.makeUserRevisor');
+    route::get('/admin/{user}/set-admin',[AdminController::class,'makeUserAdmin'])->name('admin.makeUserAdmin');
+    route::get('/admin/{user}/set-writer',[AdminController::class,'makeUserWriter'])->name('admin.makeUserWriter');
 });
