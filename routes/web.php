@@ -45,6 +45,11 @@ route::middleware('admin')->group(function(){
 Route::middleware('writer')->group(function(){
 Route::get('/article/create', [ArticleController::class, 'create']) ->name('article.create');
 Route::get('/article/store',[ArticleController::class, 'store'])->name('article.store');
+route::get('/article/dashboard',[ArticleController::class,'article_dashboard'])->name('article.dashboard');
+route::get('/article/{article}/edit}',[ArticleController::class,'edit'])->name('article.edit');
+route::get('/article/{article}/update}',[ArticleController::class,'update'])->name('article.update');
+route::get('/article/{article}/delete}',[ArticleController::class,'destroy'])->name('article.delete');
+
 });
 route::middleware('revisor')->group(function(){
     route::get('/revisor/dashboard',[RevisorController::class,'revisorDashboard'])->name('revisor.dashboard');

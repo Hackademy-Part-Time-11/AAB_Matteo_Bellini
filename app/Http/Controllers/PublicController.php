@@ -90,6 +90,33 @@ class PublicController extends Controller
     //     $tag->delete();
     //     return redirect()->route('admin.dashboard');
     // }
-
-
+    public function update (Request $request,Article $article)
+    {
+        if($request->has('img')){
+            $article->update(
+                [
+                    'title'=>$request->input('title'),
+                    'description'=>$request->input('description'),
+                    'body'=>$request->input('body'),
+                    'img'=>$request->file('img')->store("public/img"),
+                    'category_id'=>$request->input('category_id')
+                ]
+                );
+        } else {
+            $article->update(
+                [
+                    'title'=>$request->input('title'),
+                    'description'=>$request->input('description'),
+                    'body'=>$request->input('body'),
+                    'category_id'=>$request->input('category_id')  
+                ]
+                );
+        }
+        $article->tags()->detach();
+        $articles-tags()->sync($request->input('tags'));
+        return redirect()->route('article.dashboard');
+    }
 }
+
+
+

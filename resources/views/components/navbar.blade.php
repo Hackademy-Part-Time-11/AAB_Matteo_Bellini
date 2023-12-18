@@ -28,7 +28,11 @@
     <a class="nav-link" href="{{route('article.create')}}">Pubblica Articolo</a>
 </li>
 
-<li></li>
+@if(Auth::user() &&Auth::user()->is_writer)
+<li class="nav-item">
+    <a class="nav-link"href="{{route('articles.dashboard')}}">Author</a>
+</li>
+@endif
 
 
 </x-layout>
