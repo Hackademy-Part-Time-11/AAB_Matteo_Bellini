@@ -12,14 +12,15 @@
 
 @auth 
  <li class="nav-item">
-    <a class="nav-link"> {{ auth::user()->name}}</a>
+    <a class="nav-link"> {{ Auth::user()->name}}</a>
  </li>
 
 <li class="nav-item">
     <a class="dropdown-item" href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('form-logout').submit();">Logout</a>
-    <form method="post" action="{{route('logout')}}" style="display:none" id="form-logout">
+    <form method="POST" action="{{route('logout')}}" style="display:none" id="form-logout">
     @csrf 
 </form>
+</a>
 </li>
 
 @endauth
@@ -30,7 +31,7 @@
 
 @if(Auth::user() &&Auth::user()->is_writer)
 <li class="nav-item">
-    <a class="nav-link"href="{{route('articles.dashboard')}}">Author</a>
+    <a class="nav-link"href="{{route('article.dashboard')}}">Author</a>
 </li>
 @endif
 

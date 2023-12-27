@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Auth;
+use App\Http\Controllers\ArticleController;
 
 class CheckIfUserIsWriter
 {

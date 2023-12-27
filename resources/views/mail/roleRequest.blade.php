@@ -1,3 +1,4 @@
+<x-layout>
 <html>
     <body>
         <h1>Richiesta ricevuta</h1>
@@ -7,3 +8,4 @@
         <p>{{info['presentation']}}</p>
     </body>
 </html>
+</x-layout>

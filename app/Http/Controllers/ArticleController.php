@@ -23,7 +23,7 @@ class ArticleController extends Controller
     public function create()
     {
         $tags= Tag::all();
-        return view('articles.create');
+        return view('articles.create', compact('tags'));
     }
 
     /**
@@ -89,7 +89,7 @@ class ArticleController extends Controller
     public function articles_by_category(Category $category)
     {
         $articles=Article::where('category_id',$category->id)->orderBy('created_at','DESC')->get();
-        return view('articles.category',compact('article','category'));
+        return view('article.category',compact('article','category'));
     }
 
     public function articleDashboard()

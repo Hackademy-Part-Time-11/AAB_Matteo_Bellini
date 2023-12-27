@@ -58,6 +58,6 @@ route::middleware('revisor')->group(function(){
     route::get('/revisor/article/{article}/reject',[RevisorController::class,'rejectArticle'])->name('revisor.reject');
 });
 
-Route::get('/article/search', [PublicController::class, 'searchArticle'])->name('serach.articles');
+Route::get('/article/search', [PublicController::class, 'searchArticle'])->name('search.articles');
 Route::post('/tag/{tag}/update',[AdminController::class, 'editTag'])->name('tag.edit');
 Route::delete('/tag/{tag}/delete', [AdminController::class, 'deleteTag'])->name('tag.delete');
